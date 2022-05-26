@@ -45,16 +45,36 @@ namespace TicTacToe
             CoordNine = " ";
         }
 
+        internal Dictionary<(int, int), string> coordConvert = new Dictionary<(int, int), string>()
+            {
+                {(1,1), "a" },
+                {(2,1), "b" },
+                {(3,1), "c" },
+                {(1,2), "d" },
+                {(2,2), "e" },
+                {(3,2), "f" },
+                {(1,3), "g" },
+                {(2,3), "h" },
+                {(3,3), "i" }
+            };
         internal static void PrintBoard(TicTacToe t)
         {
-            Console.WriteLine($" {t.CoordOne} | {t.CoordTwo} | {t.CoordThree}");
-            Console.WriteLine($"-----------");
-            Console.WriteLine($" {t.CoordFour} | {t.CoordFive} | {t.CoordSix}");
-            Console.WriteLine($"-----------");
-            Console.WriteLine($" {t.CoordSeven} | {t.CoordEight} | {t.CoordNine}");
+            Console.WriteLine( "   |  1   2   3 ");
+            Console.WriteLine( "---|-------------");
+            Console.WriteLine($" 1 |  {t.CoordOne} | {t.CoordTwo} | {t.CoordThree}");
+            Console.WriteLine($"   |-------------");
+            Console.WriteLine($" 2 |  {t.CoordFour} | {t.CoordFive} | {t.CoordSix}");
+            Console.WriteLine($"   |-------------");
+            Console.WriteLine($" 3 |  {t.CoordSeven} | {t.CoordEight} | {t.CoordNine}");
             Console.WriteLine("\n\n");
         }
 
+        private static void InvalidPlay()
+        {
+            Console.WriteLine("Invalid play, please select another field");
+            Console.WriteLine("Press key to continue...");
+            Console.ReadKey();
+        }
         internal static TicTacToe InsertPlay(TicTacToe t, string player)
         {
             string coord = string.Empty;
@@ -65,7 +85,7 @@ namespace TicTacToe
             bool one = int.TryParse(textSplit[0], out int a);
             bool two = int.TryParse(textSplit[1], out int b);
 
-            if (one && two)
+            if (one && two && a <= 3 && b <= 3)
             {
                 t = ValidatePlay(a, b, t, t.activePlayer);
                 return t;
@@ -80,161 +100,226 @@ namespace TicTacToe
 
         internal static TicTacToe ValidatePlay(int a, int b, TicTacToe t, string p)
         {
-            Dictionary<(int, int), string> coordConvert = new Dictionary<(int, int), string>()
-            {
-                {(1,1), "a" },
-                {(2,1), "b" },
-                {(3,1), "c" },
-                {(1,2), "d" },
-                {(2,2), "e" },
-                {(3,2), "f" },
-                {(1,3), "g" },
-                {(2,3), "h" },
-                {(3,3), "i" }
-            };
-
-
-            switch (coordConvert[(a, b)])
+            switch (t.coordConvert[(a, b)])
             {
                 case "a":
                     {
-                        if (t.activePlayer == "O")
+                        if (t.CoordOne != " ")
                         {
-                            t.CoordOne = t.activePlayer;
-                            t.activePlayer = "X";
+                            InvalidPlay();
+                            break;
                         }
+
                         else
                         {
-                            t.CoordOne = "X";
-                            t.activePlayer = "O";
+                            if (t.activePlayer == "O")
+                            { 
+                                t.CoordOne = t.activePlayer;
+                                t.activePlayer = "X";
+
+                            }
+                            else
+                            {
+                                t.CoordOne = "X";
+                                t.activePlayer = "O";
+                            }
                         }
                     }
                     break;
 
                 case "b":
                     {
-                        if (t.activePlayer == "O")
+                        if (t.CoordTwo != " ")
                         {
-                            t.CoordTwo = t.activePlayer;
-                            t.activePlayer = "X";
+                            InvalidPlay();
+                            break;
                         }
+
                         else
                         {
-                            t.CoordTwo = "X";
-                            t.activePlayer = "O";
+                            if (t.activePlayer == "O")
+                            {
+                                t.CoordTwo = t.activePlayer;
+                                t.activePlayer = "X";
+                            }
+                            else
+                            {
+                                t.CoordTwo = "X";
+                                t.activePlayer = "O";
+                            }
                         }
                     }
                     break;
 
                 case "c":
                     {
-                        if (t.activePlayer == "O")
+                        if (t.CoordThree != " ")
                         {
-                            t.CoordThree = t.activePlayer;
-                            t.activePlayer = "X";
+                            InvalidPlay();
+                            break;
                         }
+
                         else
                         {
-                            t.CoordThree = "X";
-                            t.activePlayer = "O";
+                            if (t.activePlayer == "O")
+                            {
+                                t.CoordThree = t.activePlayer;
+                                t.activePlayer = "X";
+                            }
+                            else
+                            {
+                                t.CoordThree = "X";
+                                t.activePlayer = "O";
+                            }
                         }
                     }
                     break;
 
                 case "d":
                     {
-                        if (t.activePlayer == "O")
+                        if (t.CoordFour != " ")
                         {
-                            t.CoordFour = t.activePlayer;
-                            t.activePlayer = "X";
+                            InvalidPlay();
+                            break;
                         }
+
                         else
                         {
-                            t.CoordFour = "X";
-                            t.activePlayer = "O";
+                            if (t.activePlayer == "O")
+                            {
+                                t.CoordFour = t.activePlayer;
+                                t.activePlayer = "X";
+                            }
+                            else
+                            {
+                                t.CoordFour = "X";
+                                t.activePlayer = "O";
+                            }
                         }
                     }
                     break;
 
                 case "e":
                     {
-                        if (t.activePlayer == "O")
+                        if (t.CoordFive != " ")
                         {
-                            t.CoordFive = t.activePlayer;
-                            t.activePlayer = "X";
+                            InvalidPlay();
+                            break;
                         }
+
                         else
                         {
-                            t.CoordFive = "X";
-                            t.activePlayer = "O";
+                            if (t.activePlayer == "O")
+                            {
+                                t.CoordFive = t.activePlayer;
+                                t.activePlayer = "X";
+                            }
+                            else
+                            {
+                                t.CoordFive = "X";
+                                t.activePlayer = "O";
+                            }
                         }
                     }
                     break;
 
                 case "f":
                     {
-                        if (t.activePlayer == "O")
+                        if (t.CoordSix != " ")
                         {
-                            t.CoordSix = t.activePlayer;
-                            t.activePlayer = "X";
+                            InvalidPlay();
+                            break;
                         }
+
                         else
                         {
-                            t.CoordSix = "X";
-                            t.activePlayer = "O";
+                            if (t.activePlayer == "O")
+                            {
+                                t.CoordSix = t.activePlayer;
+                                t.activePlayer = "X";
+                            }
+                            else
+                            {
+                                t.CoordSix = "X";
+                                t.activePlayer = "O";
+                            }
                         }
                     }
                     break;
 
                 case "g":
                     {
-                        if (t.activePlayer == "O")
+                        if (t.CoordSeven != " ")
                         {
-                            t.CoordSeven = t.activePlayer;
-                            t.activePlayer = "X";
+                            InvalidPlay();
+                            break;
                         }
+
                         else
                         {
-                            t.CoordSeven = "X";
-                            t.activePlayer = "O";
+                            if (t.activePlayer == "O")
+                            {
+                                t.CoordSeven = t.activePlayer;
+                                t.activePlayer = "X";
+                            }
+                            else
+                            {
+                                t.CoordSeven = "X";
+                                t.activePlayer = "O";
+                            }
                         }
                     }
                     break;
 
                 case "h":
                     {
-                        if (t.activePlayer == "O")
+                        if (t.CoordEight != " ")
                         {
-                            t.CoordEight = t.activePlayer;
-                            t.activePlayer = "X";
+                            InvalidPlay();
+                            break;
                         }
+
                         else
                         {
-                            t.CoordEight = "X";
-                            t.activePlayer = "O";
+                            if (t.activePlayer == "O")
+                            {
+                                t.CoordEight = t.activePlayer;
+                                t.activePlayer = "X";
+                            }
+                            else
+                            {
+                                t.CoordEight = "X";
+                                t.activePlayer = "O";
+                            }
                         }
                     }
                     break;
 
                 case "i":
                     {
-                        if (t.activePlayer == "O")
+                        if (t.CoordNine != " ")
                         {
-                            t.CoordNine = t.activePlayer;
-                            t.activePlayer = "X";
+                            InvalidPlay();
+                            break;
                         }
+
                         else
                         {
-                            t.CoordNine = "X";
-                            t.activePlayer = "O";
+                            if (t.activePlayer == "O")
+                            {
+                                t.CoordNine = t.activePlayer;
+                                t.activePlayer = "X";
+                            }
+                            else
+                            {
+                                t.CoordNine = "X";
+                                t.activePlayer = "O";
+                            }
                         }
                     }
                     break;
             }
             return t;
         }
-
-
-
     }
 }
