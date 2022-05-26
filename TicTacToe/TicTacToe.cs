@@ -9,12 +9,13 @@ namespace TicTacToe
     internal class TicTacToe
     {
         /* Tabuleiro
-         *     1   2   3 (X)
-         * 1   a | b | c
-         *    -----------
-         * 2   d | e | f
-         *    -----------
-         * 3   g | h | i
+         *   |  1   2   3 (X)
+         * --|---------------    
+         * 1 |  a | b | c
+         *   | -----------
+         * 2 |  d | e | f
+         *   | -----------
+         * 3 |  g | h | i
          *(Y)  
          */
 
@@ -61,12 +62,20 @@ namespace TicTacToe
             coord = Console.ReadLine();
 
             var textSplit = coord.Split(' ');
-            var one = Int32.Parse(textSplit[0]);
-            var two = Int32.Parse(textSplit[1]);
+            bool one = int.TryParse(textSplit[0], out int a);
+            bool two = int.TryParse(textSplit[1], out int b);
 
-            t = ValidatePlay(one, two, t, t.activePlayer);
-
-            return t;
+            if (one && two)
+            {
+                t = ValidatePlay(a, b, t, t.activePlayer);
+                return t;
+            }
+            else
+            {
+                Console.WriteLine("Incorret coordinate inserted, try again;");
+                Console.ReadKey();
+                return t;
+            }
         }
 
         internal static TicTacToe ValidatePlay(int a, int b, TicTacToe t, string p)
