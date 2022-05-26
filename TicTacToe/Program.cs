@@ -10,6 +10,18 @@ namespace TicTacToe
     {
         static void Main(string[] args)
         {
+            int rounds = 0;
+            TicTacToe t = new TicTacToe();
+
+            while(rounds != 8)
+            {
+                TicTacToe.PrintBoard(t);
+                TicTacToe.InsertPlay(t, t.activePlayer);
+                Console.Clear();
+
+                rounds++;
+            }
+
         }
     }
 }
