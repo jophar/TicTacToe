@@ -83,7 +83,7 @@ namespace TicTacToe
 
             var textSplit = coord.Split(' ');
             bool one = int.TryParse(textSplit[0], out int a);
-            bool two = int.TryParse(textSplit[1], out int b);
+            bool two = int.TryParse(textSplit[1], out int b); //  o segundo try parse nao funciona se for dado um valor sem espaços
 
             if (one && two && a <= 3 && b <= 3)
             {
@@ -98,6 +98,7 @@ namespace TicTacToe
             }
         }
 
+        // TODO: Refaturar o metodo
         internal static TicTacToe ValidatePlay(int a, int b, TicTacToe t, string p)
         {
             switch (t.coordConvert[(a, b)])
@@ -320,6 +321,22 @@ namespace TicTacToe
                     break;
             }
             return t;
+        }
+
+        internal static void ValidateWin(TicTacToe t, string player)
+        {
+            /* Há oito formas de ganhar
+             * 3 horizontais, 3 verticais e duas cruzadas
+             * a b c; 
+             * d e f; 
+             * g h i; 
+             * a d g; 
+             * b e h;
+             * c f i;
+             * a e i;
+             * c e g;
+             */
+
         }
     }
 }
