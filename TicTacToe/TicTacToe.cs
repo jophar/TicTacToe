@@ -323,13 +323,13 @@ namespace TicTacToe
             return t;
         }
 
-        internal static void ValidateWin(TicTacToe t, string player)
+        internal static bool ValidateWin(TicTacToe t)
         {
             /* Há oito formas de ganhar
              * 3 horizontais, 3 verticais e duas cruzadas
-             * a b c; 
-             * d e f; 
-             * g h i; 
+             * a b c; v
+             * d e f; v
+             * g h i; v
              * a d g; 
              * b e h;
              * c f i;
@@ -337,6 +337,46 @@ namespace TicTacToe
              * c e g;
              */
 
+            if (t.CoordOne == "X" && t.CoordOne == "X" && t.CoordThree == "X" ||
+                t.CoordOne == "O" && t.CoordOne == "O" && t.CoordThree == "O")
+                return true;
+            if (t.CoordFour == "X" && t.CoordFive == "X" && t.CoordSix == "X" ||
+                t.CoordFour == "O" && t.CoordFive == "O" && t.CoordSix == "O")
+                return true;
+            if (t.CoordSeven == "X" && t.CoordEight == "X" && t.CoordNine == "X" ||
+                t.CoordSeven == "O" && t.CoordEight == "O" && t.CoordNine == "O")
+                return true;
+            if (t.CoordOne == "X" && t.CoordFour == "X" && t.CoordSeven == "X" ||
+                t.CoordOne == "O" && t.CoordFour == "O" && t.CoordSeven == "O")
+                return true;
+            if (t.CoordTwo == "X" && t.CoordFive == "X" && t.CoordEight == "X" ||
+                t.CoordTwo == "O" && t.CoordFive == "O" && t.CoordEight == "O")
+                return true;
+            if (t.CoordThree == "X" && t.CoordSix == "X" && t.CoordNine == "X" ||
+                t.CoordThree == "O" && t.CoordSix == "O" && t.CoordNine == "O")
+                return true;
+            if (t.CoordOne == "X" && t.CoordFive == "X" && t.CoordNine == "X" ||
+                t.CoordOne == "O" && t.CoordFive == "O" && t.CoordNine == "O")
+                return true;
+            if (t.CoordSeven == "X" && t.CoordFive == "X" && t.CoordThree == "X" ||
+                t.CoordSeven == "O" && t.CoordFive == "O" && t.CoordThree == "O")
+                return true;
+            else
+                return false;
+
+        }
+
+        internal void ValidateWinner()
+        {
+            string name = activePlayer;
+
+            if (name == "X")
+                name = "O";
+            else
+                name = "X";
+            Console.WriteLine($"{name} wins the game!");
+            Console.WriteLine("Press enter to exit!");
+            Console.ReadKey();
         }
     }
 }

@@ -10,17 +10,18 @@ namespace TicTacToe
     {
         static void Main(string[] args)
         {
-            int rounds = 0;
             TicTacToe t = new TicTacToe();
 
-            while(rounds != 8)
+            do
             {
                 TicTacToe.PrintBoard(t);
                 TicTacToe.InsertPlay(t, t.activePlayer);
                 Console.Clear();
-
-                rounds++;
             }
+            while (!TicTacToe.ValidateWin(t));
+
+            TicTacToe.PrintBoard(t);
+            t.ValidateWinner();
 
         }
     }
